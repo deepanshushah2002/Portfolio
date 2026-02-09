@@ -1419,6 +1419,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="subject">Your Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Enter your Subject" required>
+                </div>
+
+                <div class="form-group">
                     <label for="message">Your Message</label>
                     <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
                 </div>
@@ -1568,7 +1573,7 @@
         });
     </script>
     <!-- EmailJS library -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <!-- EmailJS init -->
     <script>
@@ -1577,28 +1582,25 @@
 
     <!-- Contact form send logic -->
     <script>
-        const contactForm = document.getElementById("contact-form");
-        const status = document.getElementById("status");
+  const contactForm = document.getElementById("contact-form");
+  const status = document.getElementById("status");
 
-        contactForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            status.textContent = "Sending...";
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    status.textContent = "Sending...";
 
-            emailjs.sendForm(
-                "service_fud6g4n",
-                "template_jvedtek",
-                this
-            )
-            .then(() => {
-                status.textContent = "✅ Message sent successfully!";
-                contactForm.reset();
-            })
-            .catch((error) => {
-                status.textContent = "❌ Failed to send message.";
-                console.error(error);
-            });
-        });
-    </script>
+    emailjs.sendForm("service_fud6g4n", "template_jvedtek", this)
+      .then((response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        status.textContent = "✅ Message sent successfully!";
+        contactForm.reset();
+      })
+      .catch((error) => {
+        console.log("FAILED...", error);
+        status.textContent = "❌ Failed to send message. Please try again.";
+      });
+  });
+</script>
 </body>
 
 </html>
