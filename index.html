@@ -774,6 +774,12 @@
             color: var(--secondary);
         }
 
+        .project-card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
         /* Contact Section */
         .contact-container {
             max-width: 1000px;
@@ -1310,19 +1316,22 @@
         <h2 class="section-title">Projects</h2>
         <div class="projects-grid">
 
-            <div class="project-card">
-                <div class="project-preview">🎮</div>
-                <div class="project-info">
-                    <h3>Quiz Game App</h3>
-                    <p>Single player game with real-time leaderboards and rewards.</p>
-                    <div class="project-tags">
-                        <span>Flutter</span>
-                        <span>Dart</span>
-                        <span>Animation</span>
-                        <span>Android Studio</span>
+            <a href="https://github.com/deepanshushah2002/Quiz-Game" target="_blank" class="project-card-link">
+                <div class="project-card">
+                    <div class="project-preview">🎮</div>
+                    <div class="project-info">
+                        <h3>Quiz Game App</h3>
+                        <p>Single player game with real-time leaderboards and rewards.</p>
+                        <div class="project-tags">
+                            <span>Flutter</span>
+                            <span>Dart</span>
+                            <span>Animation</span>
+                            <span>Android Studio</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
+
             <div class="project-card">
                 <div class="project-preview">📱</div>
                 <div class="project-info">
@@ -1584,25 +1593,25 @@
 
     <!-- Contact form send logic -->
     <script>
-  const contactForm = document.getElementById("contact-form");
-  const status = document.getElementById("status");
+        const contactForm = document.getElementById("contact-form");
+        const status = document.getElementById("status");
 
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    status.textContent = "Sending...";
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            status.textContent = "Sending...";
 
-    emailjs.sendForm("service_fud6g4n", "template_jvedtek", this)
-      .then((response) => {
-        console.log("SUCCESS!", response.status, response.text);
-        status.textContent = "✅ Message sent successfully!";
-        contactForm.reset();
-      })
-      .catch((error) => {
-        console.log("FAILED...", error);
-        status.textContent = "❌ Failed to send message. Please try again.";
-      });
-  });
-</script>
+            emailjs.sendForm("service_fud6g4n", "template_jvedtek", this)
+                .then((response) => {
+                    console.log("SUCCESS!", response.status, response.text);
+                    status.textContent = "✅ Message sent successfully!";
+                    contactForm.reset();
+                })
+                .catch((error) => {
+                    console.log("FAILED...", error);
+                    status.textContent = "❌ Failed to send message. Please try again.";
+                });
+        });
+    </script>
 </body>
 
 </html>
