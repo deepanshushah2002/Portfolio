@@ -2,1615 +2,516 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepanshu Shah - Flutter Developer Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #02569B;
-            --secondary: #54C5F8;
-            --accent: #40E0D0;
-            --dark: #0A0E27;
-            --light: #FFFFFF;
-            --card-bg: rgba(255, 255, 255, 0.03);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark);
-            color: var(--light);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Animated Background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: float 15s infinite;
-            opacity: 0.5;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.5;
-            }
-
-            90% {
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 14, 39, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            animation: slideDown 0.8s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        .namelogo {
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 5px var(--secondary));
-            }
-
-            to {
-                filter: drop-shadow(0 0 20px var(--accent));
-            }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100svh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5%;
-            position: relative;
-        }
-
-        @supports not (height: 100svh) {
-            .hero {
-                min-height: 100vh;
-            }
-        }
-
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero-greeting {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-            animation: fadeInUp 0.8s ease 0.1s both;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin-bottom: 0.5rem;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-role {
-            font-size: 1.4rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease 0.3s both;
-        }
-
-        .hero-desc {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Flutter Logo Animation */
-        .flutter-logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 2rem;
-            position: relative;
-            animation: fadeInUp 0.8s ease 0.05s both;
-        }
-
-        .flutter-logo .wing {
-            position: absolute;
-            width: 50px;
-            height: 85px;
-            animation: flutter 2s ease-in-out infinite;
-        }
-
-        .flutter-logo .wing-1 {
-            background: linear-gradient(135deg, var(--secondary) 50%, var(--primary) 50%);
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            top: 0;
-            left: 35px;
-            transform-origin: bottom;
-        }
-
-        .flutter-logo .wing-2 {
-            background: var(--primary);
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            top: 0;
-            left: 35px;
-            transform: rotate(180deg);
-            transform-origin: top;
-            animation-delay: 0.1s;
-        }
-
-        .flutter-logo .center {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 75px;
-            left: 52px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes flutter {
-
-            0%,
-            100% {
-                transform: rotateY(0deg);
-            }
-
-            50% {
-                transform: rotateY(20deg);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.2);
-                opacity: 0.8;
-            }
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.5s both;
-        }
-
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: var(--light);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(84, 197, 248, 0.3);
-        }
-
-        .cta-btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary);
-        }
-
-        .scroll-indicator {
-            animation: bounce 2s infinite, fadeInUp 0.8s ease 0.7s both;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(-10px);
-            }
-
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* Section Common Styles */
-        section {
-            padding: 5rem 5%;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--secondary);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-desc {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 3rem;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            position: relative;
-            animation: fadeInUp 0.8s ease both;
-        }
-
-        .about-img-placeholder {
-            width: 200px;
-            height: 200px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-img-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) rotate(45deg);
-            }
-        }
-
-        .about-text {
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .about-text h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .about-text p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .about-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Qualification Section */
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--secondary), var(--accent));
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 50%;
-            position: relative;
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-
-        .timeline-item:nth-child(even) {
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: 50%;
-            transform: translateX(50px);
-        }
-
-        .timeline-item.visible {
-            animation: slideIn 0.6s ease forwards;
-        }
-
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .timeline-content {
-            background: var(--card-bg);
-            border: 1px solid rgba(84, 197, 248, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            max-width: 350px;
-            position: relative;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -60px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::before {
-            left: -60px;
-        }
-
-        .timeline-date {
-            color: var(--secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-school {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(84, 197, 248, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .skill-card.visible {
-            animation: slideUp 0.6s ease forwards;
-        }
-
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(84, 197, 248, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .skill-card:hover::before {
-            left: 100%;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .skill-card h3 {
-            color: var(--secondary);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 0.5rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .skill-name {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-name::before {
-            content: '▸';
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .skill-bar {
-            height: 6px;
-            background: rgba(84, 197, 248, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            border-radius: 3px;
-            width: 0;
-            transition: width 1.5s ease;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(84, 197, 248, 0.1);
-            transition: transform 0.3s;
-            opacity: 0;
-            transform: scale(0.9);
-        }
-
-        .project-card.visible {
-            animation: scaleIn 0.6s ease forwards;
-        }
-
-        @keyframes scaleIn {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .project-card:hover {
-            transform: scale(1.05);
-        }
-
-        .project-preview {
-            height: 180px;
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-preview::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            transform: translate(-50%, -50%) rotate(45deg);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-info h3 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-info p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .project-tags span {
-            padding: 0.3rem 0.8rem;
-            background: rgba(84, 197, 248, 0.1);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--secondary);
-        }
-
-        .project-card-link {
-            text-decoration: none;
-            color: inherit;
-        }
-
-
-        /* Contact Section */
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .contact-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(84, 197, 248, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .contact-card.visible {
-            animation: slideUp 0.6s ease forwards;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--secondary);
-        }
-
-        .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .contact-card h3 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card p,
-        .contact-card a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-card a:hover {
-            color: var(--accent);
-        }
-
-        .contact-form {
-            background: var(--card-bg);
-            border: 1px solid rgba(84, 197, 248, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(84, 197, 248, 0.2);
-            border-radius: 10px;
-            color: var(--light);
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(84, 197, 248, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid rgba(84, 197, 248, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-3px);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-role {
-                font-size: 1.1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .about-stats {
-                justify-content: center;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                justify-content: flex-start;
-                padding-left: 50px;
-                padding-right: 0;
-            }
-
-            .timeline-content::before,
-            .timeline-item:nth-child(odd) .timeline-content::before,
-            .timeline-item:nth-child(even) .timeline-content::before {
-                left: -40px;
-                right: auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 1rem 3%;
-            }
-
-            .nav-links {
-                gap: 0.7rem;
-            }
-
-            .nav-links a {
-                font-size: 0.8rem;
-            }
-
-            section {
-                padding: 4rem 3%;
-            }
-        }
-
-        nav {
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-
-        /* Hide menu by default on mobile */
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        /* Hamburger menu button styles */
-        .menu-btn {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 25px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .menu-btn span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: #fff;
-            border-radius: 2px;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: absolute;
-                top: 70px;
-                right: 0;
-                background: rgba(10, 14, 39, 0.95);
-                flex-direction: column;
-                width: 200px;
-                padding: 1rem;
-                transform: translateX(100%);
-                transition: transform 0.3s ease-in-out;
-            }
-
-            .nav-links.show {
-                transform: translateX(0);
-            }
-
-            .menu-btn {
-                display: flex;
-            }
-        }
-
-
-        body,
-        a,
-        button {
-            cursor: none;
-            /* hides the default cursor */
-        }
-
-        @media (max-width: 768px) {
-
-            body,
-            a,
-            button {
-                cursor: auto;
-            }
-
-            .custom-cursor {
-                display: none;
-            }
-        }
-
-
-        /* Basic circle cursor */
-        .custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            /* change size */
-            height: 20px;
-            border: 2px solid #00ffff;
-            /* color */
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
-            z-index: 9999;
-        }
-
-        /* Hover effect on clickable elements */
-        a:hover,
-        button:hover {
-            cursor: none;
-            /* hide default */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Deepanshu Shah</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;600&family=JetBrains+Mono:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
-
 <body>
 
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="customCursor"></div>
+  <div id="loader">
+    <div class="lo-orbit o1"></div>
+    <div class="lo-orbit o2"></div>
+    <div class="lo-orbit o3"></div>
+    <div class="lo-logo">DS</div>
+    <div class="lo-sub">Deepanshu Shah &middot; Portfolio</div>
+    <div class="lo-bar-wrap">
+      <div class="lo-bar" id="lo-bar"></div>
+    </div>
+    <div class="lo-pct" id="lo-pct">0%</div>
+    <div class="lo-status" id="lo-status">Initializing systems</div>
+  </div>
 
-    <!-- Particles Background -->
-    <div class="particles" id="particles"></div>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="char-canvas" width="80" height="80"></canvas>
+  <canvas id="char-trail"></canvas>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">Portfolio</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#qualification">Qualification</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="menu-btn" id="menuBtn">
-            <span></span>
-            <span></span>
-            <span></span>
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" onclick="closeMenu()"><span class="mn">01</span>About</a>
+    <a href="#skills" onclick="closeMenu()"><span class="mn">02</span>Skills</a>
+    <a href="#projects" onclick="closeMenu()"><span class="mn">03</span>Work</a>
+    <a href="#education" onclick="closeMenu()"><span class="mn">04</span>Education</a>
+    <a href="#contact" onclick="closeMenu()"><span class="mn">05</span>Contact</a>
+    <div class="mob-footer"><span>DS.</span> &mdash; Deepanshu Shah &copy; 2025</div>
+  </div>
+
+  <nav>
+    <a href="#hero" class="nav-logo">DS</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Work</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Available for Work &mdash; 2025</div>
+      <h1 class="hero-title">Deepanshu<br /><span class="accent">Shah</span></h1>
+      <p class="hero-sub">A fourth-year undergraduate engineering student at R.D Engineering College, Ghaziabad.
+        Passionate about building beautiful cross-platform applications.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>Scroll to explore
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-visual reveal">
+      <div class="about-card" id="tilt-card">
+        <div class="avatar-ring">
+          <div class="avatar-inner">&#128100;</div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="flutter-logo">
-                <div class="wing wing-1"></div>
-                <div class="wing wing-2"></div>
-                <div class="center"></div>
-            </div>
-            <p class="hero-greeting">Hi, I'm</p>
-            <h1> <span class="namelogo">Deepanshu Shah</span></h1>
-            <p class="hero-role">Engineering Student & Flutter Developer</p>
-            <p class="hero-desc">A fourth-year undergraduate engineering student at R.D Engineering College, Ghaziabad.
-                Passionate about building beautiful cross-platform applications.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="cta-btn">📧 Contact Me</a>
-                <a href="#about" class="cta-btn cta-btn-outline">👤 About Me</a>
-            </div>
-            <div class="scroll-indicator">
-                <span style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">Scroll down ⬇️</span>
-            </div>
+        <div class="card-name">Deepanshu Shah</div>
+        <div class="card-role">Full-Stack Engineer</div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="stat-num" data-target="1">0</div>
+            <div class="stat-lbl">Years</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-target="12">0</div>
+            <div class="stat-lbl">Projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-target="1">0</div>
+            <div class="stat-lbl">Clients</div>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="float-chip c1">Dart</div>
+      <div class="float-chip c2">Flutter</div>
+      <div class="float-chip c3">Kotlin</div>
+    </div>
+    <div class="reveal">
+      <div class="section-label">01 About</div>
+      <h2 class="section-title">Flutter Developer<br /><span style="color:var(--accent)">&amp;</span><br />Engineering
+        Student</h2>
+      <p class="about-text">I am a dedicated and passionate Flutter developer currently pursuing my B.Tech degree. With
+        a strong foundation in mobile application development, I specialize in creating responsive and performant
+        cross-platform applications.</p>
+      <p class="about-text">My journey in tech started with a curiosity for how things work, which evolved into a deep
+        passion for crafting digital experiences. I believe in writing clean, maintainable code and staying updated with
+        the latest industry trends.</p>
+      <a href="#contact" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">Let's Build Something
+        &rarr;</a>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <p class="section-subtitle">My Intro</p>
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-img">
-                <div class="about-img-placeholder">👨‍💻</div>
-            </div>
-            <div class="about-text">
-                <h3>Flutter Developer & Engineering Student</h3>
-                <p>I am a dedicated and passionate Flutter developer currently pursuing my B.Tech degree. With a strong
-                    foundation in mobile application development, I specialize in creating responsive and performant
-                    cross-platform applications.</p>
-                <p>My journey in tech started with a curiosity for how things work, which evolved into a deep passion
-                    for crafting digital experiences. I believe in writing clean, maintainable code and staying updated
-                    with the latest industry trends.</p>
-                <div class="about-stats">
-                    <div class="stat">
-                        <div class="stat-number">1+</div>
-                        <div class="stat-label">Years Coding</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Projects</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">2+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                </div>
-            </div>
+  <section id="skills">
+    <div class="skills-header reveal">
+      <div class="section-label">02 Expertise</div>
+      <h2 class="section-title">My <span style="color:var(--accent)">Stack</span></h2>
+    </div>
+    <div class="skill-tabs">
+      <button class="skill-tab active" data-cat="all">All</button>
+      <button class="skill-tab" data-cat="frontend">Programming Languages</button>
+      <button class="skill-tab" data-cat="backend">IT Constructs</button>
+      <button class="skill-tab" data-cat="infra">Technologies</button>
+    </div>
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-chip" data-cat="frontend" style="--sk-color:#f7df1e;--sk-offset:14">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:22%;bottom:14%;animation-delay:.1s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#9889;</div>
         </div>
-    </section>
-
-    <!-- Qualification Section -->
-    <section id="qualification">
-        <p class="section-subtitle">My Personal Journey</p>
-        <h2 class="section-title">Qualification</h2>
-        <p class="section-desc">Education</p>
-        <div class="timeline" id="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2021 - 2025</div>
-                    <h4 class="timeline-title">B.Tech in Computer Science</h4>
-                    <p class="timeline-school">R.D Engineering College, Ghaziabad</p>
-                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem;">Currently in final
-                        year, focusing on mobile development and software engineering.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2020 - 2021</div>
-                    <h4 class="timeline-title">Senior Secondary (12th)</h4>
-                    <p class="timeline-school">Columbia Convent Institute Pre University College</p>
-                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem;">Foundation in
-                        Physics, Chemistry, and Mathematics.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2018 - 2019</div>
-                    <h4 class="timeline-title">High School (10th)</h4>
-                    <p class="timeline-school">Shaheed Memorial Vidya Kendra</p>
-                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem;">Built strong
-                        academic foundation and developed interest in technology.</p>
-                </div>
-            </div>
+        <div class="sk-name">Dart</div>
+        <div class="sk-lvl">Expert &middot; 95%</div>
+      </div>
+      <div class="skill-chip" data-cat="frontend" style="--sk-color:#92594a;--sk-offset:18">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:30%;bottom:12%;animation-delay:.2s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#9749;</div>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <p class="section-subtitle">My Abilities</p>
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <!-- Programming Languages -->
-            <div class="skill-card">
-                <span class="skill-icon">💻</span>
-                <h3>Programming Languages</h3>
-                <ul class="skill-list">
-                    <li>
-                        <span class="skill-name">Dart</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Java</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="65%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Kotlin</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80%"></div>
-                        </div>
-                    </li>
-
-                    <li>
-                        <span class="skill-name">Python</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70%"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- IT Constructs -->
-            <div class="skill-card">
-                <span class="skill-icon">🏗️</span>
-                <h3>IT Constructs</h3>
-                <ul class="skill-list">
-                    <li>
-                        <span class="skill-name">OOP & Design Patterns</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Data Structures & Algorithms</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">RESTful API Architecture</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="92%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">State Management</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Clean Architecture & TDD</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="88%"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Technologies -->
-            <div class="skill-card">
-                <span class="skill-icon">⚡</span>
-                <h3>Technologies</h3>
-                <ul class="skill-list">
-                    <li>
-                        <span class="skill-name">Flutter & Dart</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="98%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Firebase</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Git & CI/CD</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="87%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">AWS / Google Cloud</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75%"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Android Studio</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="82%"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <div class="sk-name">Java</div>
+        <div class="sk-lvl">Expert &middot; 90%</div>
+      </div>
+      <div class="skill-chip" data-cat="frontend" style="--sk-color:#0c88ad;--sk-offset:22">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:4px;height:4px;left:25%;bottom:13%;animation-delay:.3s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#127760;</div>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <p class="section-subtitle">My Work</p>
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-
-            <a href="https://github.com/deepanshushah2002/Quiz-Game" target="_blank" class="project-card-link">
-                <div class="project-card">
-                    <div class="project-preview">🎮</div>
-                    <div class="project-info">
-                        <h3>Quiz Game App</h3>
-                        <p>Single player game with real-time leaderboards and rewards.</p>
-                        <div class="project-tags">
-                            <span>Flutter</span>
-                            <span>Dart</span>
-                            <span>Animation</span>
-                            <span>Android Studio</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <div class="project-card">
-                <div class="project-preview">📱</div>
-                <div class="project-info">
-                    <h3>E-Commerce App (In Progress)</h3>
-                    <p>A scalable shopping application with secure payment and real-data sunchronization</p>
-                    <div class="project-tags">
-                        <span>Flutter</span>
-                        <span>Firebase</span>
-                        <span>Stripe</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-preview">💬</div>
-                <div class="project-info">
-                    <h3>Social Media App (In Progress)</h3>
-                    <p>A real-time social platform enabling messaging and video communication.</p>
-                    <div class="project-tags">
-                        <span>Flutter</span>
-                        <span>WebSocket</span>
-                        <span>WebRTC</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-preview">🧮</div>
-                <div class="project-info">
-                    <h3>BMI Calculator (In Progress)</h3>
-                    <p>A secure health utility app integrating blockchain for data integrity and privacy.</p>
-                    <div class="project-tags">
-                        <span>Flutter</span>
-                        <span>Blockchain</span>
-                        <span>Security</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-preview">🎬</div>
-                <div class="project-info">
-                    <h3>Streaming App (Planned)</h3>
-                    <p>A video playback application focused on streaming and managing videos stored locally on the user’s device, with smooth playback and media controls.</p>
-                    <div class="project-tags">
-                        <span>Flutter</span>
-                        <span>Video Player</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-preview">🏥</div>
-                <div class="project-info">
-                    <h3>Health Tracker (Planned)</h3>
-                    <p>Health monitoring app with BLE device integration and Apple Health support.</p>
-                    <div class="project-tags">
-                        <span>Flutter</span>
-                        <span>HealthKit</span>
-                        <span>BLE</span>
-                    </div>
-                </div>
-            </div>
+        <div class="sk-name">Kotlin</div>
+        <div class="sk-lvl">Expert &middot; 88%</div>
+      </div>
+      <div class="skill-chip" data-cat="frontend" style="--sk-color:#08832d;--sk-offset:27">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:20%;bottom:11%;animation-delay:.15s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#128013;</div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <p class="section-subtitle">Get In Touch</p>
-        <h2 class="section-title">Contact Me</h2>
-        <div class="contact-container">
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <span class="contact-icon">📞</span>
-                    <h3>Call Me</h3>
-                    <a href="tel:9312426029">9312426029</a>
-                </div>
-                <div class="contact-card">
-                    <span class="contact-icon">📧</span>
-                    <h3>Email</h3>
-                    <a href="mailto:deepanshushah01@outlook.com">deepanshushah01@outlook.com</a>
-                </div>
-                <div class="contact-card">
-                    <span class="contact-icon">📍</span>
-                    <h3>Location</h3>
-                    <p>Ghaziabad, UP, India</p>
-                </div>
-            </div>
-            <form id="contact-form" class="contact-form">
-
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="subject">Your Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Enter your Subject" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-                </div>
-
-                <button type="submit" class="cta-btn" style="width: 100%; justify-content: center;">
-                    📨 Send Message
-                </button>
-
-                <p id="status"></p>
-
-            </form>
-
+        <div class="sk-name">Python</div>
+        <div class="sk-lvl">Advanced &middot; 85%</div>
+      </div>
+      <div class="skill-chip" data-cat="backend" style="--sk-color:#68a063;--sk-offset:22">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:28%;bottom:13%;animation-delay:.25s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#129504;</div>
         </div>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/deepanshushah2002#" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/deepanshu-shah-/" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://x.com/deepanshu_shah_" title="Twitter">
-                <i class="fab fa-x-twitter"></i>
-            </a>
-            <a href="#" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
+        <div class="sk-name">OOP &amp; Design Patterns</div>
+        <div class="sk-lvl">Expert &middot; 88%</div>
+      </div>
+      <div class="skill-chip" data-cat="backend" style="--sk-color:#ee7fee;--sk-offset:36">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:4px;height:4px;left:32%;bottom:12%;animation-delay:.4s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#129504;</div>
         </div>
-        <p>Made with 💙 by Deepanshu Shah | © 2025</p>
-    </footer>
+        <div class="sk-name">Data Structures &amp; Algorithms</div>
+        <div class="sk-lvl">Advanced &middot; 80%</div>
+      </div>
+      <div class="skill-chip" data-cat="backend" style="--sk-color:#e535ab;--sk-offset:27">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:24%;bottom:14%;animation-delay:.35s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#128293;</div>
+        </div>
+        <div class="sk-name">RESTful API Architecture</div>
+        <div class="sk-lvl">Advanced &middot; 85%</div>
+      </div>
+      <div class="skill-chip" data-cat="backend" style="--sk-color:#5a67d8;--sk-offset:36">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:4px;height:4px;left:26%;bottom:11%;animation-delay:.45s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#127939;</div>
+        </div>
+        <div class="sk-name">State Management</div>
+        <div class="sk-lvl">Expert &middot; 80%</div>
+      </div>
+      <div class="skill-chip" data-cat="backend" style="--sk-color:#a50b58;--sk-offset:36">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:4px;height:4px;left:26%;bottom:11%;animation-delay:.45s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#127959;</div>
+        </div>
+        <div class="sk-name">Clean Architecture &amp; TDD</div>
+        <div class="sk-lvl">Expert &middot; 80%</div>
+      </div>
+      <div class="skill-chip" data-cat="infra" style="--sk-color:#1696d1;--sk-offset:32">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:20%;bottom:13%;animation-delay:.2s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#128241;</div>
+        </div>
+        <div class="sk-name">Flutter &amp; Dart</div>
+        <div class="sk-lvl">Advanced &middot; 82%</div>
+      </div>
+      <div class="skill-chip" data-cat="infra" style="--sk-color:#ed5d24;--sk-offset:32">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:6px;height:6px;left:30%;bottom:14%;animation-delay:.3s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#128293;</div>
+        </div>
+        <div class="sk-name">Firebase</div>
+        <div class="sk-lvl">Advanced &middot; 82%</div>
+      </div>
+      <div class="skill-chip" data-cat="infra" style="--sk-color:#1792e4;--sk-offset:36">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:4px;height:4px;left:24%;bottom:11%;animation-delay:.25s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#128051;</div>
+        </div>
+        <div class="sk-name">Git &amp; CI/CD</div>
+        <div class="sk-lvl">Advanced &middot; 80%</div>
+      </div>
+      <div class="skill-chip" data-cat="infra" style="--sk-color:#a7b80f;--sk-offset:27">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:27%;bottom:11%;animation-delay:.45s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#9925;</div>
+        </div>
+        <div class="sk-name">AWS / Google Cloud</div>
+        <div class="sk-lvl">Advanced &middot; 85%</div>
+      </div>
+      <div class="skill-chip" data-cat="infra" style="--sk-color:#12a54b;--sk-offset:27">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:27%;bottom:11%;animation-delay:.45s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#128295;</div>
+        </div>
+        <div class="sk-name">Android Studio</div>
+        <div class="sk-lvl">Advanced &middot; 85%</div>
+      </div>
+      <div class="skill-chip" data-cat="infra" style="--sk-color:#6584eb;--sk-offset:27">
+        <div class="chip-border"></div>
+        <div class="chip-spot"></div>
+        <div class="chip-shimmer"></div>
+        <div class="sk-orb" style="width:5px;height:5px;left:27%;bottom:11%;animation-delay:.45s"></div>
+        <div class="sk-ring-wrap"><svg class="sk-ring-svg" viewBox="0 0 70 70">
+            <circle class="sk-track" cx="35" cy="35" r="29" />
+            <circle class="sk-fill" cx="35" cy="35" r="29" />
+          </svg>
+          <div class="sk-icon">&#128187;</div>
+        </div>
+        <div class="sk-name">VS Code</div>
+        <div class="sk-lvl">Advanced &middot; 85%</div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Custom Cursor
-        const cursor = document.getElementById('customCursor');
+  <section id="projects">
+    <div class="projects-header reveal">
+      <div class="section-label">03 Work</div>
+      <h2 class="section-title">Selected <span style="color:var(--accent)">Projects</span></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="proj-card" style="--pc:#00f5c4">
+        <div class="pc-border"></div>
+        <div class="pc-spot"></div>
+        <div class="pc-corner tl"></div>
+        <div class="pc-corner tr"></div>
+        <div class="pc-corner bl"></div>
+        <div class="pc-corner br"></div>
+        <div class="pc-visual" style="background:linear-gradient(135deg,#06101e,#0a1c30)"><canvas
+            class="pc-canvas"></canvas>
+          <div class="pc-ambient"
+            style="background:radial-gradient(ellipse at 50% 0%,rgba(0,245,196,.14),transparent 70%)"></div>
+          <div class="pc-shimmer"></div>
+          <div class="pc-emoji">&#127918;</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="pc-tag">Flutter</span><span class="pc-tag">Dart</span><span
+              class="pc-tag">Animation</span><span class="pc-tag">Android Studio</span></div>
+          <div class="pc-title" data-t="Quiz Master">Quiz Master</div>
+          <p class="pc-desc">Real-time quiz application with dynamic scoring, reward mechanics, and smooth Flutter
+            animations optimized for performance.</p>
+        </div>
+        <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a
+            href="https://github.com/deepanshushah2002/Quiz-Game" class="pc-link pc-link-g">GitHub &#8599;</a></div>
+      </div>
+      <div class="proj-card" style="--pc:#b464ff">
+        <div class="pc-border"></div>
+        <div class="pc-spot"></div>
+        <div class="pc-corner tl"></div>
+        <div class="pc-corner tr"></div>
+        <div class="pc-corner bl"></div>
+        <div class="pc-corner br"></div>
+        <div class="pc-visual" style="background:linear-gradient(135deg,#100820,#1e0d30)"><canvas
+            class="pc-canvas"></canvas>
+          <div class="pc-ambient"
+            style="background:radial-gradient(ellipse at 50% 0%,rgba(180,100,255,.14),transparent 70%)"></div>
+          <div class="pc-shimmer"></div>
+          <div class="pc-emoji">&#129504;</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="pc-tag">Flutter</span><span class="pc-tag">Firebase</span><span
+              class="pc-tag">Stripe</span></div>
+          <div class="pc-title" data-t="E-Commerce App (In Progress)">E-Commerce App (In Progress)</div>
+          <p class="pc-desc">A scalable shopping application with secure payment and real-data sunchronization.</p>
+        </div>
+        <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a href="#"
+            class="pc-link pc-link-g">GitHub &#8599;</a></div>
+      </div>
+      <div class="proj-card" style="--pc:#00e07a">
+        <div class="pc-border"></div>
+        <div class="pc-spot"></div>
+        <div class="pc-corner tl"></div>
+        <div class="pc-corner tr"></div>
+        <div class="pc-corner bl"></div>
+        <div class="pc-corner br"></div>
+        <div class="pc-visual" style="background:linear-gradient(135deg,#051508,#092210)"><canvas
+            class="pc-canvas"></canvas>
+          <div class="pc-ambient"
+            style="background:radial-gradient(ellipse at 50% 0%,rgba(0,224,122,.14),transparent 70%)"></div>
+          <div class="pc-shimmer"></div>
+          <div class="pc-emoji">📱</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="pc-tag">Flutter</span><span class="pc-tag">WebSocket</span><span
+              class="pc-tag">NWebRTC</span></div>
+          <div class="pc-title" data-t="Social Media App (In Progress)">Social Media App (In Progress)</div>
+          <p class="pc-desc">A real-time social platform enabling messaging and video communication.</p>
+        </div>
+        <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a href="#"
+            class="pc-link pc-link-g">GitHub &#8599;</a></div>
+      </div>
+      <div class="proj-card" style="--pc:#f5a623">
+        <div class="pc-border"></div>
+        <div class="pc-spot"></div>
+        <div class="pc-corner tl"></div>
+        <div class="pc-corner tr"></div>
+        <div class="pc-corner bl"></div>
+        <div class="pc-corner br"></div>
+        <div class="pc-visual" style="background:linear-gradient(135deg,#1a1300,#251c00)"><canvas
+            class="pc-canvas"></canvas>
+          <div class="pc-ambient"
+            style="background:radial-gradient(ellipse at 50% 0%,rgba(245,166,35,.14),transparent 70%)"></div>
+          <div class="pc-shimmer"></div>
+          <div class="pc-emoji">🏪</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="pc-tag">Flutter</span><span class="pc-tag">HealthKit</span><span
+              class="pc-tag">BLE</span></div>
+          <div class="pc-title" data-t="Health Tracker (Planned)">Health Tracker (Planned)</div>
+          <p class="pc-desc">Health monitoring app with BLE device integration and Apple Health support.</p>
+          <div>
+          </div>
+          <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a href="#"
+              class="pc-link pc-link-g">GitHub &#8599;</a></div>
+        </div>
+      </div>
+  </section>
 
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.top = e.clientY + 'px';
-            cursor.style.left = e.clientX + 'px';
-        });
+  <section id="education">
+    <div class="edu-header reveal">
+      <div class="section-label">04 Education</div>
+      <h2 class="section-title">Academic <span style="color:var(--accent)">Journey</span></h2>
+    </div>
+    <div class="edu-timeline">
+      <div class="edu-item" style="--edu-color:#00f5c4">
+        <div class="edu-card">
+          <div class="edu-border"></div>
+          <div class="edu-shimmer"></div>
+          <div class="edu-year">2021 &ndash; 2025</div><span class="edu-icon">&#127891;</span>
+          <div class="edu-degree">Bachelor of Technology</div>
+          <div class="edu-school">Computer Science &amp; Engineering &mdash; R.D Engineering College, Ghaziabad</div>
+          <p class="edu-desc">Currently in final year, focusing on mobile development and software engineering.</p>
+        </div>
+        <div class="edu-dot-wrap">
+          <div class="edu-dot"></div>
+        </div>
+      </div>
+      <div class="edu-item" style="--edu-color:#b464ff">
+        <div class="edu-card">
+          <div class="edu-border"></div>
+          <div class="edu-shimmer"></div>
+          <div class="edu-year">2020 &ndash; 2021</div><span class="edu-icon">&#128208;</span>
+          <div class="edu-degree">Intermediate &mdash; Class XII</div>
+          <div class="edu-school">Science Stream (PCM) &mdash; Columbia Convent Institute Pre University College,
+            Ghaziabad</div>
+          <p class="edu-desc">Foundation in Physics, Chemistry, and Mathematics. Built a strong foundation in analytical
+            thinking.</p>
+        </div>
+        <div class="edu-dot-wrap">
+          <div class="edu-dot"></div>
+        </div>
+      </div>
+      <div class="edu-item" style="--edu-color:#f5a623">
+        <div class="edu-card">
+          <div class="edu-border"></div>
+          <div class="edu-shimmer"></div>
+          <div class="edu-year">2018 &ndash; 2019</div><span class="edu-icon">&#127979;</span>
+          <div class="edu-degree">High School &mdash; Class X</div>
+          <div class="edu-school">Shaheed Memorial Vidya Kendra, Ghaziabad &mdash; CBSE Board</div>
+          <p class="edu-desc">Built strong academic foundation and developed interest in technology.</p>
+        </div>
+        <div class="edu-dot-wrap">
+          <div class="edu-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        const hoverables = document.querySelectorAll('a, button');
+  <section id="contact">
+    <div class="contact-inner reveal">
+      <div class="section-label">05 Contact</div>
+      <h2 class="contact-title">Let's <span style="color:var(--accent)">Work</span> Together</h2>
+      <p class="contact-sub">Open to full-time roles, freelance projects, and interesting collaborations.</p>
+      <div class="contact-links">
+        <a href="mailto:deepanshushah01@outlook.com" class="contact-link">&#9993;&#65039;
+          deepanshushah01@outlook.com</a>
+        <a href="https://www.linkedin.com/in/deepanshu-shah-/" class="contact-link">LinkedIn</a>
+        <a href="https://github.com/deepanshushah2002" class="contact-link">GitHub</a>
+        <a href="https://x.com/deepanshu_shah_" class="contact-link">Twitter</a>
+      </div>
+    </div>
+  </section>
 
-        hoverables.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '40px';
-                cursor.style.height = '40px';
-                cursor.style.background = 'rgba(0, 255, 255, 0.2)';
-            });
-
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '20px';
-                cursor.style.height = '20px';
-                cursor.style.background = 'transparent';
-            });
-        });
-
-
-        // Create particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-
-                    // Animate skill bars
-                    if (entry.target.classList.contains('skill-card')) {
-                        const progressBars = entry.target.querySelectorAll('.skill-progress');
-                        progressBars.forEach(bar => {
-                            setTimeout(() => {
-                                bar.style.width = bar.dataset.width;
-                            }, 300);
-                        });
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements
-        document.querySelectorAll('.skill-card, .project-card, .contact-card').forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
-            observer.observe(card);
-        });
-
-        // Observe timeline items
-        document.querySelectorAll('.timeline-item').forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.2}s`;
-            observer.observe(item);
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(10, 14, 39, 0.95)';
-            } else {
-                nav.style.background = 'rgba(10, 14, 39, 0.9)';
-            }
-        });
-
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menuBtn');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('show');
-            });
-        });
-
-        window.addEventListener('load', () => {
-            const nav = document.querySelector('nav');
-            nav.style.transform = 'translateZ(0)';
-        });
-    </script>
-    <!-- EmailJS library -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <!-- EmailJS init -->
-    <script>
-        emailjs.init("Gc8l4bEBNdBbZkTvC");
-    </script>
-
-    <!-- Contact form send logic -->
-    <script>
-        const contactForm = document.getElementById("contact-form");
-        const status = document.getElementById("status");
-
-        contactForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            status.textContent = "Sending...";
-
-            emailjs.sendForm("service_fud6g4n", "template_jvedtek", this)
-                .then((response) => {
-                    console.log("SUCCESS!", response.status, response.text);
-                    status.textContent = "✅ Message sent successfully!";
-                    contactForm.reset();
-                })
-                .catch((error) => {
-                    console.log("FAILED...", error);
-                    status.textContent = "❌ Failed to send message. Please try again.";
-                });
-        });
-    </script>
+  <footer>
+    <span>&copy; 2025 Deepanshu Shah</span>
+    <span>Built with Flutter + Three.js</span>
+    <span style="color:var(--accent)">All systems operational &#9679;</span>
+  </footer>
+ <script src="script.js"></script>
 </body>
-
 </html>
