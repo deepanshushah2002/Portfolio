@@ -76,4 +76,144 @@
     (function loop() { requestAnimationFrame(loop); tgtY = getTgtY(); charY += (tgtY - charY) * .08; if (moving) { fTick += Math.abs(scSpeed) * .14 + .1; if (fTick >= 1) { fTick = 0; fIdx = (fIdx + 1) % 4; } cc.style.top = charY + 'px'; cc.style.filter = 'drop-shadow(0 0 12px #00f5c4)'; if (Math.random() < .3) spawnT(); } else { fIdx = 0; iBob += .05; cc.style.top = (charY + Math.sin(iBob) * 3) + 'px'; cc.style.filter = 'drop-shadow(0 0 7px #00f5c4)'; } drawFrame(fIdx, facing); tctx.clearRect(0, 0, tc2.width, tc2.height); trail = trail.filter(function (p) { return p.life > 0.01; }); trail.forEach(function (p) { p.x += p.vx; p.y += p.vy; p.vy += .04; p.life -= .04; tctx.beginPath(); tctx.arc(p.x, p.y, Math.max(0, p.size * p.life), 0, Math.PI * 2); tctx.fillStyle = p.color + Math.floor(p.life * 200).toString(16).padStart(2, '0'); tctx.fill(); }); })();
     cc.addEventListener('click', function () { var secs = document.querySelectorAll('section'); secs[Math.floor(Math.random() * secs.length)].scrollIntoView({ behavior: 'smooth' }); });
     drawFrame(0, false);
+
+    /* PROJECT MODAL */
+    var PROJECTS = {
+        quiz: {
+            title: 'Quiz Master',
+            badge: 'Flutter App',
+            url: 'quizmaster.app',
+            desc: 'Real-time quiz application with dynamic scoring, reward mechanics, and smooth Flutter animations optimized for performance.',
+            tags: ['Flutter', 'Dart', 'Animation', 'Android Studio'],
+            color: '#00f5c4',
+            github: 'https://github.com/deepanshushah2002/Quiz-Game',
+            emoji: '🎮',
+            slides: [
+                { type: 'img', label: 'Name Entry', src: 'assets/project image/Quiz Game/name_entry.jpg' },
+                { type: 'img', label: 'Countdown', src: 'assets/project image/Quiz Game/countdown.jpg' },
+                { type: 'img', label: 'Quiz Screen', src: 'assets/project image/Quiz Game/quiz.jpg' },
+                { type: 'img', label: 'Result Screen', src: 'assets/project image/Quiz Game/result.jpg' }
+            ]
+        },
+        cinemax: {
+            title: 'CineMax',
+            badge: 'Flutter App',
+            url: 'cinemax.app',
+            desc: 'A video playback application focused on streaming and managing videos stored locally on the user\'s device, with smooth playback and media controls.',
+            tags: ['Flutter', 'Dart', 'Animation'],
+            color: '#b464ff',
+            github: 'https://github.com/deepanshushah2002/Cinemax',
+            emoji: '🎬',
+            slides: [
+                { type: 'placeholder', label: 'Home Screen', emoji: '🎬' },
+                { type: 'placeholder', label: 'Player Screen', emoji: '▶️' },
+                { type: 'placeholder', label: 'Library Screen', emoji: '🎞️' }
+            ]
+        },
+        social: {
+            title: 'Social Media App',
+            badge: 'In Progress',
+            url: 'socialmedia.app',
+            desc: 'A real-time social platform enabling messaging and video communication built with Flutter and WebSocket.',
+            tags: ['Flutter', 'WebSocket', 'WebRTC'],
+            color: '#00e07a',
+            github: '#',
+            emoji: '📱',
+            slides: [
+                { type: 'placeholder', label: 'Feed Screen', emoji: '📰' },
+                { type: 'placeholder', label: 'Chat Screen', emoji: '💬' },
+                { type: 'placeholder', label: 'Video Call', emoji: '📹' }
+            ]
+        },
+        health: {
+            title: 'Health Tracker',
+            badge: 'Planned',
+            url: 'healthtracker.app',
+            desc: 'Health monitoring app with BLE device integration and Apple Health support for comprehensive wellness tracking.',
+            tags: ['Flutter', 'HealthKit', 'BLE'],
+            color: '#f5a623',
+            github: '#',
+            emoji: '🏪',
+            slides: [
+                { type: 'placeholder', label: 'Dashboard', emoji: '📊' },
+                { type: 'placeholder', label: 'Metrics', emoji: '💓' },
+                { type: 'placeholder', label: 'Devices', emoji: '⌚' }
+            ]
+        }
+    };
+
+    var modal = document.getElementById('project-modal');
+    var modalTitle = document.getElementById('pmodal-title');
+    var modalBadge = document.getElementById('pmodal-badge');
+    var modalUrl = document.getElementById('pmodal-url');
+    var modalDesc = document.getElementById('pmodal-desc');
+    var modalTags = document.getElementById('pmodal-tags');
+    var modalScreens = document.getElementById('pmodal-screens');
+    var modalThumbs = document.getElementById('pmodal-thumbs');
+    var modalGh = document.getElementById('pmodal-gh');
+    var modalClose = document.getElementById('pmodal-close');
+    var currentSlide = 0;
+
+    function openModal(key) {
+        var p = PROJECTS[key];
+        if (!p) return;
+        document.documentElement.style.setProperty('--modal-accent', p.color);
+        modalTitle.textContent = p.title;
+        modalBadge.textContent = p.badge;
+        modalUrl.textContent = p.url;
+        modalDesc.textContent = p.desc;
+        modalGh.href = p.github;
+        modalTags.innerHTML = p.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('');
+        modalScreens.innerHTML = '';
+        modalThumbs.innerHTML = '';
+        currentSlide = 0;
+        p.slides.forEach(function (slide, i) {
+            var div = document.createElement('div');
+            div.className = 'psc-slide';
+            if (slide.type === 'placeholder') {
+                div.innerHTML = '<div class="psc-placeholder" style="background:linear-gradient(135deg,#06080e,#0c0c18)"><div class="psc-placeholder-icon">' + slide.emoji + '</div><span>' + slide.label + '</span></div>';
+            } else {
+                div.innerHTML = '<img src="' + slide.src + '" alt="' + slide.label + '" loading="lazy">';
+            }
+            modalScreens.appendChild(div);
+            var thumb = document.createElement('div');
+            thumb.className = 'pthumb' + (i === 0 ? ' active' : '');
+            if (slide.type === 'placeholder') {
+                thumb.innerHTML = '<div class="pthumb-placeholder" style="background:linear-gradient(135deg,#0c0c18,#12121f)">' + slide.emoji + '</div>';
+            } else {
+                thumb.innerHTML = '<img src="' + slide.src + '" alt="' + slide.label + '">';
+            }
+            thumb.dataset.idx = i;
+            thumb.addEventListener('click', function () { goToSlide(+this.dataset.idx); });
+            modalThumbs.appendChild(thumb);
+        });
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function goToSlide(idx) {
+        var slides = modalScreens.querySelectorAll('.psc-slide');
+        var thumbs = modalThumbs.querySelectorAll('.pthumb');
+        if (idx < 0 || idx >= slides.length) return;
+        currentSlide = idx;
+        var slideW = modalScreens.offsetWidth;
+        modalScreens.scrollTo({ left: slideW * idx, behavior: 'smooth' });
+        thumbs.forEach(function (t, i) { t.classList.toggle('active', i === idx); });
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+    document.querySelectorAll('.pc-live-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openModal(this.dataset.project);
+        });
+    });
 })();

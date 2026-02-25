@@ -366,7 +366,7 @@
           <p class="pc-desc">Real-time quiz application with dynamic scoring, reward mechanics, and smooth Flutter
             animations optimized for performance.</p>
         </div>
-        <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a
+        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="quiz">Live Demo &rarr;</a><a
             href="https://github.com/deepanshushah2002/Quiz-Game" class="pc-link pc-link-g">GitHub &#8599;</a></div>
       </div>
       <div class="proj-card" style="--pc:#b464ff">
@@ -389,7 +389,7 @@
           <div class="pc-title" data-t="CineMax">CineMax</div>
           <p class="pc-desc">A video playback application focused on streaming and managing videos stored locally on the users device, with smooth playback and media controls.</p>
         </div>
-        <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a href="https://github.com/deepanshushah2002/Cinemax"
+        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="cinemax">Live Demo &rarr;</a><a href="https://github.com/deepanshushah2002/Cinemax"
             class="pc-link pc-link-g">GitHub &#8599;</a></div>
       </div>
       <div class="proj-card" style="--pc:#00e07a">
@@ -412,7 +412,7 @@
           <div class="pc-title" data-t="Social Media App (In Progress)">Social Media App (In Progress)</div>
           <p class="pc-desc">A real-time social platform enabling messaging and video communication.</p>
         </div>
-        <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a href="#"
+        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="social">Live Demo &rarr;</a><a href="#"
             class="pc-link pc-link-g">GitHub &#8599;</a></div>
       </div>
       <div class="proj-card" style="--pc:#f5a623">
@@ -436,7 +436,7 @@
           <p class="pc-desc">Health monitoring app with BLE device integration and Apple Health support.</p>
           <div>
           </div>
-          <div class="pc-footer"><a href="#" class="pc-link">Live Demo &rarr;</a><a href="#"
+          <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="health">Live Demo &rarr;</a><a href="#"
               class="pc-link pc-link-g">GitHub &#8599;</a></div>
         </div>
       </div>
@@ -512,6 +512,40 @@
     <span>Built with Flutter + Three.js</span>
     <span style="color:var(--accent)">All systems operational &#9679;</span>
   </footer>
+  <div id="project-modal" class="pmodal-overlay" role="dialog" aria-modal="true" aria-label="Project Preview">
+    <div class="pmodal-container">
+      <div class="pmodal-header">
+        <div class="pmodal-title-wrap">
+          <span class="pmodal-badge" id="pmodal-badge">Preview</span>
+          <h3 class="pmodal-title" id="pmodal-title">Project Name</h3>
+        </div>
+        <button class="pmodal-close" id="pmodal-close" aria-label="Close modal">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 1l16 16M17 1L1 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="pmodal-body">
+        <div class="pmodal-screen-wrap">
+          <div class="pmodal-screen-bar">
+            <span class="psb-dot" style="background:#ff6b6b"></span>
+            <span class="psb-dot" style="background:#f5a623"></span>
+            <span class="psb-dot" style="background:#00f5c4"></span>
+            <span class="psb-url" id="pmodal-url">app.preview</span>
+          </div>
+          <div class="pmodal-screens" id="pmodal-screens">
+            <!-- screenshots injected here -->
+          </div>
+        </div>
+        <div class="pmodal-info">
+          <p class="pmodal-desc" id="pmodal-desc"></p>
+          <div class="pmodal-tags" id="pmodal-tags"></div>
+          <div class="pmodal-actions">
+            <a href="#" class="pmodal-gh-btn" id="pmodal-gh" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+          </div>
+        </div>
+      </div>
+      <div class="pmodal-thumb-row" id="pmodal-thumbs"></div>
+    </div>
+  </div>
  <script src="script.js"></script>
 </body>
 </html>
