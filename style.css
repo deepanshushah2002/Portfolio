@@ -1998,6 +1998,8 @@
     }
 
     @media(max-width:768px) {
+      body { cursor: auto }
+      #cursor, #cursor-ring { display: none !important }
       .pmodal-body { grid-template-columns: 1fr }
       .pmodal-container { border-radius: 16px }
       .pmodal-info { padding-bottom: .5rem }
