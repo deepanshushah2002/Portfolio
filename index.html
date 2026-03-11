@@ -11,6 +11,7 @@
     rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
+
 <body>
 
   <div id="loader">
@@ -345,6 +346,36 @@
       <h2 class="section-title">Selected <span style="color:var(--accent)">Projects</span></h2>
     </div>
     <div class="projects-grid">
+      <div class="proj-card" style="--pc:#FF6B35">
+        <div class="pc-border"></div>
+        <div class="pc-spot"></div>
+        <div class="pc-corner tl"></div>
+        <div class="pc-corner tr"></div>
+        <div class="pc-corner bl"></div>
+        <div class="pc-corner br"></div>
+        <div class="pc-visual" style="background:linear-gradient(135deg,#0A0A0F,#1a0f08)">
+          <canvas class="pc-canvas"></canvas>
+          <div class="pc-ambient"
+            style="background:radial-gradient(ellipse at 50% 0%,rgba(255,107,53,.14),transparent 70%)"></div>
+          <div class="pc-shimmer"></div>
+          <div class="pc-emoji">&#128240;</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-tags">
+            <span class="pc-tag">Flutter</span>
+            <span class="pc-tag">Dart</span>
+            <span class="pc-tag">REST API</span>
+            <span class="pc-tag">Provider</span>
+          </div>
+          <div class="pc-title" data-t="NewsWire">NewsWire</div>
+          <p class="pc-desc">Dark editorial news app with live NewsAPI integration, category filtering, debounced
+            search, and persistent bookmarks via local storage.</p>
+        </div>
+        <div class="pc-footer">
+          <a href="#" class="pc-link pc-live-btn" data-project="newswire">Live Demo &rarr;</a>
+          <a href="https://github.com/deepanshushah2002/NewsWire" class="pc-link pc-link-g">GitHub &#8599;</a>
+        </div>
+      </div>
       <div class="proj-card" style="--pc:#00f5c4">
         <div class="pc-border"></div>
         <div class="pc-spot"></div>
@@ -366,8 +397,8 @@
           <p class="pc-desc">Real-time quiz application with dynamic scoring, reward mechanics, and smooth Flutter
             animations optimized for performance.</p>
         </div>
-        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="quiz">Live Demo &rarr;</a><a
-            href="https://github.com/deepanshushah2002/Quiz-Game" class="pc-link pc-link-g">GitHub &#8599;</a></div>
+        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="quiz">Live Demo &rarr;</a>
+            <a href="https://github.com/deepanshushah2002/Quiz-Game" class="pc-link pc-link-g">GitHub &#8599;</a></div>
       </div>
       <div class="proj-card" style="--pc:#b464ff">
         <div class="pc-border"></div>
@@ -387,10 +418,11 @@
           <div class="pc-tags"><span class="pc-tag">Flutter</span><span class="pc-tag">Dart</span><span
               class="pc-tag">Animation</span></div>
           <div class="pc-title" data-t="CineMax">CineMax</div>
-          <p class="pc-desc">A video playback application focused on streaming and managing videos stored locally on the users device, with smooth playback and media controls.</p>
+          <p class="pc-desc">A video playback application focused on streaming and managing videos stored locally on the
+            users device, with smooth playback and media controls.</p>
         </div>
-        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="cinemax">Live Demo &rarr;</a><a href="https://github.com/deepanshushah2002/Cinemax"
-            class="pc-link pc-link-g">GitHub &#8599;</a></div>
+        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="cinemax">Live Demo &rarr;</a>
+          <a href="https://github.com/deepanshushah2002/Cinemax" class="pc-link pc-link-g">GitHub &#8599;</a></div>
       </div>
       <div class="proj-card" style="--pc:#00e07a">
         <div class="pc-border"></div>
@@ -412,8 +444,8 @@
           <div class="pc-title" data-t="Social Media App (In Progress)">Social Media App (In Progress)</div>
           <p class="pc-desc">A real-time social platform enabling messaging and video communication.</p>
         </div>
-        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="social">Live Demo &rarr;</a><a href="#"
-            class="pc-link pc-link-g">GitHub &#8599;</a></div>
+        <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="social">Live Demo &rarr;</a><a
+            href="#" class="pc-link pc-link-g">GitHub &#8599;</a></div>
       </div>
       <div class="proj-card" style="--pc:#f5a623">
         <div class="pc-border"></div>
@@ -436,8 +468,8 @@
           <p class="pc-desc">Health monitoring app with BLE device integration and Apple Health support.</p>
           <div>
           </div>
-          <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="health">Live Demo &rarr;</a><a href="#"
-              class="pc-link pc-link-g">GitHub &#8599;</a></div>
+          <div class="pc-footer"><a href="#" class="pc-link pc-live-btn" data-project="health">Live Demo &rarr;</a><a
+              href="#" class="pc-link pc-link-g">GitHub &#8599;</a></div>
         </div>
       </div>
   </section>
@@ -520,7 +552,9 @@
           <h3 class="pmodal-title" id="pmodal-title">Project Name</h3>
         </div>
         <button class="pmodal-close" id="pmodal-close" aria-label="Close modal">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 1l16 16M17 1L1 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M1 1l16 16M17 1L1 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
         </button>
       </div>
       <div class="pmodal-body">
@@ -546,6 +580,7 @@
       <div class="pmodal-thumb-row" id="pmodal-thumbs"></div>
     </div>
   </div>
- <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>

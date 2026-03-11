@@ -79,6 +79,22 @@
 
     /* PROJECT MODAL */
     var PROJECTS = {
+        newswire: {
+            title: 'NewsWire',
+            badge: 'Flutter App',
+            url: 'newswire.app',
+            desc: 'Dark editorial news app with live NewsAPI integration, category filtering, debounced search, and persistent bookmarks via local storage.',
+            tags: ['Flutter', 'Dart', 'REST API', 'Provider'],
+            color: '#FF6B35',
+            github: 'https://github.com/deepanshushah2002/NewsWire',
+            emoji: '📰',
+            slides: [
+                { type: 'img', label: 'Home Feed', src: 'assets/project image/NewsWire/HomeFeed.jpg' },
+                { type: 'img', label: 'Article Detail', src: 'assets/project image/NewsWire/ArticleDetail.jpg' },
+                { type: 'img', label: 'Bookmarks', src: 'assets/project image/NewsWire/Bookmarks.jpg' },
+                { type: 'img', label: 'Search', src: 'assets/project image/NewsWire/Search.jpg' }
+            ]
+        },
         quiz: {
             title: 'Quiz Master',
             badge: 'Flutter App',
@@ -105,9 +121,10 @@
             github: 'https://github.com/deepanshushah2002/Cinemax',
             emoji: '🎬',
             slides: [
-                { type: 'placeholder', label: 'Home Screen', emoji: '🎬' },
-                { type: 'placeholder', label: 'Player Screen', emoji: '▶️' },
-                { type: 'placeholder', label: 'Library Screen', emoji: '🎞️' }
+                { type: 'img', label: 'Home Screen', src: 'assets/project image/cinemax/HomeScreen.jpg' },
+                { type: 'img', label: 'Player Screen', src: 'assets/project image/cinemax/PlayerScreen.jpg' },
+                { type: 'img', label: 'Volume Screen', src: 'assets/project image/cinemax/VolumeScreen.jpg' },
+                { type: 'img', label: 'TimeSlip Screen', src: 'assets/project image/cinemax/TimeslipScreen.jpg' }
             ]
         },
         social: {
