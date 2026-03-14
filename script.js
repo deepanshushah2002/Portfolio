@@ -79,6 +79,25 @@
 
     /* PROJECT MODAL */
     var PROJECTS = {
+        resumelab: {
+            title: 'ResumeLab',
+            badge: 'Flutter App',
+            url: 'resumelab.app',
+            desc: 'ATS-optimized resume builder with 6 PDF templates, real-time ATS score, dark/light theme, role-based keyword suggestions, and offline-first local storage.',
+            tags: ['Flutter', 'Dart', 'PDF Export', 'Provider'],
+            color: '#1B4FE4',
+            github: 'https://github.com/deepanshushah2002/ResumeLab',
+            emoji: '📄',
+            slides: [
+                { type: 'img', label: 'Start Screen', src: 'assets/project image/Resume Lab/Start screen.jpg' },
+                { type: 'img', label: 'Home Dashboard', src: 'assets/project image/Resume Lab/Home screen.jpg' },
+                { type: 'img', label: 'Resume Builder', src: 'assets/project image/Resume Lab/Resume builder.jpg' },
+                { type: 'img', label: 'Certificate Screen', src: 'assets/project image/Resume Lab/Certificate screen.jpg' },
+                { type: 'img', label: 'Education Screen', src: 'assets/project image/Resume Lab/Education screen.jpg' },
+                { type: 'img', label: 'Template Picker', src: 'assets/project image/Resume Lab/Template picker.jpg' },
+                { type: 'img', label: 'PDF Preview', src: 'assets/project image/Resume Lab/PDF preview.jpg' }
+            ]
+        },
         newswire: {
             title: 'NewsWire',
             badge: 'Flutter App',
